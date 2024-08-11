@@ -20,6 +20,9 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
 ![Region](/Region%20variable.png)
 
 2. Setting up VPC
+- Create a vpc_variable.tf file to specify to allocate the CIDR block range, for this project we have allocated 10.0.0/
+![Region](/VPC%20variable.png)
+
 - Allocate the CIDR block range, for this project we have allocated 10.0.0/16, the 10.0 ssection has been set in variable of vpc_variable.tf file
 - Create Subnets:
- - Public Subnet a, with a pulic IP and CIDR block range of 10.0.0/24, with the following varible refrencinng the earlier crrated file: VPC and avaulability zone
+ - Public Subnet a, with a pulic IP and CIDR block range of 10.0.0/24, with the following varible referencinng the earlier created file: VPC and availability zone
