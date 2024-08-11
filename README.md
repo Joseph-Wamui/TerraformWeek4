@@ -35,7 +35,7 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
 
   - Create private subnet d(app-private-a), without a public IP and a CIDR block range of 10.0.4.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
 
-   - Create private subnet e(app-private-b), without a public IP and a CIDR block range of 10.0.7.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+   - Create private subnet e(bastion-public-a), without a public IP and a CIDR block range of 10.0.7.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
    ![Subnet1](/Subnet%20pic%201.png)
    ![Subnet2](/Subnet%20pic%202.png)
 
@@ -69,8 +69,20 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
 5. **Setting Up Route Tables and Associations**
 - Create a route_tables.tf file to configure the following:
  - A Public Subnet Route Table, attach this route table to the  earlier created VPC by referencing the VPC ID.  Allow traffic to the internet by setting the cidr_block to 0.0.0.0/0 and linking it to the internet gateway created earlier. Add a Tag for labelling the resource.
-  - Create Route Table Association, and : Link this route table to the public subnet, and a Tag for labelling the resource.
+  - Create Route Table Association, and Link this route table to the public subnet.
    ![Gatewayspic](/RT%201.png)
+
+ - A Web Private Subnet Route Table, attach this route table to the earlier created VPC by referencing the VPC ID.  A Route outbound traffic through the NAT gateway by setting the cidr_block to 0.0.0.0/0 and linking it to the NAT gateway created earlier. Add a Tag for labelling the resource.
+  - Create Route Table Association, and Link this route table to the private subnets for the web servers.
+   ![Gatewayspic](/RT%202.png)
+
+ - App Private Subnet Route Table, attach this route table to the  earlier created VPC by referencing the VPC ID.  Route outbound traffic through the NAT gateway by setting the cidr_block to 0.0.0.0/0 and linking it to the NAT gateway created earlier. Add a Tag for labelling the resource.
+  - Create Route Table Association, and Link this route table to the private subnets for the application servers.
+   ![Gatewayspic](/RT%203.png)
+
+ - ABastion Public Subnet Route Table:, attach this route table to the  earlier created VPC by referencing the VPC ID.  Allow traffic to the internet by setting the cidr_block to 0.0.0.0/0 and linking it to the internet gateway created earlier. Add a Tag for labelling the resource.
+  - Create Route Table Association, and Link this route table to the bastion public subnet.
+   ![Gatewayspic](/RT%204.png)
 
   
 
