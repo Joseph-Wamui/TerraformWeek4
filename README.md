@@ -45,7 +45,7 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
      - A NaT Gateway that depends on the previously created Elastic IP and allocates ID from the Elastic IP, and is associated with subnet from the subnets defined earlier. Include a Tag for labelling the resource.
    - Create an internet gateway, referencing to the earlier created VPC as it attched to the VPC, and a Tag for labelling the resource.
 
-    ![Gatewayspic](/Gateways%20pic.png)
+ ![Gatewayspic](/Gateways%20pic.png)
 
 
 
