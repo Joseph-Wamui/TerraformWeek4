@@ -20,9 +20,34 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
 ![Region](/Region%20variable.png)
 
 2. Setting up VPC
-- Create a vpc_variable.tf file to specify to allocate the CIDR block range, for this project we have allocated 10.0.0/
+- Create a vpc_variable.tf file then specify to allocate the CIDR block range. For this project we have allocated 10.0.0/16. 
 ![Region](/VPC%20variable.png)
 
-- Allocate the CIDR block range, for this project we have allocated 10.0.0/16, the 10.0 ssection has been set in variable of vpc_variable.tf file
+
 - Create Subnets:
- - Public Subnet a, with a pulic IP and CIDR block range of 10.0.0/24, with the following varible referencinng the earlier created file: VPC and availability zone
+ - Create a public subnet with a CIDR block range of 10.0.0.0/24 and assign it a public IP. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+
+ - Create private subnet a(public-a), without a public IP and a CIDR block range of 10.0.1.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+
+ - Create private subnet b(web-private-a), without a public IP and a CIDR block range of 10.0.2.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+
+ - Create private subnet c(web-private-b), without a public IP and a CIDR block range of 10.0.3.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+
+  - Create private subnet d(app-private-a), without a public IP and a CIDR block range of 10.0.4.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+
+   - Create private subnet e(app-private-b), without a public IP and a CIDR block range of 10.0.7.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
+   ![Subnet1](/Subnet%20pic%201.png)
+   ![Subnet2](/Subnet%20pic%202.png)
+
+   3. Setting Up NAT Gateway and Internet Gateway
+   - Create a gateways.tf file to congigure:
+     -  The  Elastic IP (EIP) that will be associated with the NAT Gateway. Include a Tag for labelling the resource.
+     - A NaT Gateway that depends on the previously created Elastic IP and allocates ID from the Elastic IP, and is associated with subnet from the subnets defined earlier. Include a Tag for labelling the resource.
+   - Create an internet gateway, referencing to the earlier created VPC as it attched to the VPC, and a Tag for labelling the resource.
+
+    ![Gatewayspic](/Gateways%20pic.png)
+
+
+
+
+
