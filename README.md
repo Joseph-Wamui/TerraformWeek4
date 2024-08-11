@@ -43,9 +43,19 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
    - Create a gateways.tf file to congigure:
      -  The  Elastic IP (EIP) that will be associated with the NAT Gateway. Include a Tag for labelling the resource.
      - A NaT Gateway that depends on the previously created Elastic IP and allocates ID from the Elastic IP, and is associated with subnet from the subnets defined earlier. Include a Tag for labelling the resource.
-   - Create an internet gateway, referencing to the earlier created VPC as it attched to the VPC, and a Tag for labelling the resource.
+   - Create an internet gateway, referencing to the earlier created VPC as it attched to the VPC for the resources to communicate to the internet, and a Tag for labelling the resource.
 
  ![Gatewayspic](/Gateways%20pic.png)
+
+4. Step 4: Setting Up Network ACLs (NACLs)
+Create a nacl.tf file to configure: 
+- A public NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
+ - A subnet to associate with the NACL and and a Tag for labelling the resource.
+  ![Gatewayspic](/NACL%201.png)
+- A Web Private NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules simialr to the Public NACL: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
+ - A subnet to associate with the NACL and and a Tag for labelling the resource.
+  ![Gatewayspic](/NACL%202.png)
+  
 
 
 
