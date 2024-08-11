@@ -11,7 +11,7 @@ An AWS account is require with the appropriate permissions and access tokens to 
 
 ## INSTRUCTIONS
 
-1. Setting up the Provider
+1. **Setting up the Provider**
 - Create a provider.tf, Specify AWS Provider and set Terraform Version
 - Set the AWS Region in the general_variables.tf file,  referenced by the region variable
 For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUMS and Region: eu-north-1
@@ -19,7 +19,7 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
 ![Provider.](/Provider.png)
 ![Region](/Region%20variable.png)
 
-2. Setting up VPC
+2. **Setting up VPC**
 - Create a vpc_variable.tf file then specify to allocate the CIDR block range. For this project we have allocated 10.0.0/16. 
 ![Region](/VPC%20variable.png)
 
@@ -47,15 +47,33 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
 
  ![Gatewayspic](/Gateways%20pic.png)
 
-4. Step 4: Setting Up Network ACLs (NACLs)
-Create a nacl.tf file to configure: 
-- A public NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
- - A subnet to associate with the NACL and and a Tag for labelling the resource.
-  ![Gatewayspic](/NACL%201.png)
-- A Web Private NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules simialr to the Public NACL: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
- - A subnet to associate with the NACL and and a Tag for labelling the resource.
+4. **Step 4: Setting Up Network ACLs (NACLs)**
+
+- Create a nacl.tf file to configure: 
+ - A public NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
+  - A public subnet to associate with the NACL and and a Tag for labelling the resource.
+   ![Gatewayspic](/NACL%201.png)
+
+ - A Web Private NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules simialr to the Public NACL: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
+  - A Private subnet to associate with the NACL and and a Tag for labelling the resource.
   ![Gatewayspic](/NACL%202.png)
+
+   - A Web Private NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules simialr to the Public NACL: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
+  - A Private subnet to associate with the NACL and and a Tag for labelling the resource.
+  ![Gatewayspic](/NACL%203.png)
+
+   - A Bastion Public NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules simialr to the other NACLs: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
+  - A Private subnet to associate with the NACL and and a Tag for labelling the resource.
+  ![Gatewayspic](/NACL%204.png)
+
+5. **Setting Up Route Tables and Associations**
+- Create a route_tables.tf file to configure the following:
+ - A Public Subnet Route Table, attach this route table to the  earlier created VPC by referencing the VPC ID.  Allow traffic to the internet by setting the cidr_block to 0.0.0.0/0 and linking it to the internet gateway created earlier. Add a Tag for labelling the resource.
+  - Create Route Table Association, and : Link this route table to the public subnet, and a Tag for labelling the resource.
+   ![Gatewayspic](/RT%201.png)
+
   
+
 
 
 
