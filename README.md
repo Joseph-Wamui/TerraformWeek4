@@ -16,8 +16,8 @@ An AWS account is require with the appropriate permissions and access tokens to 
 - Set the AWS Region in the general_variables.tf file,  referenced by the region variable
 For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUMS and Region: eu-north-1
 
-![Provider.](/Provider.png)
-![Region](/Region%20variable.png)
+![Provider.](/Screenshots/Provider.png)
+![Region](/Screenshots/Region%20variable.png)
 
 2. **Setting up VPC**
 - Create a vpc_variable.tf file then specify to allocate the CIDR block range. For this project we have allocated 10.0.0/16. 
@@ -36,8 +36,8 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
   - Create private subnet d(app-private-a), without a public IP and a CIDR block range of 10.0.4.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
 
    - Create private subnet e(bastion-public-a), without a public IP and a CIDR block range of 10.0.7.0/24. Use variables to reference the VPC and AWS region defined earlier, and a Tag for labelling the resource.
-   ![Subnet1](/Subnet%20pic%201.png)
-   ![Subnet2](/Subnet%20pic%202.png)
+   ![Subnet1](/Screenshots/Subnet%20pic%201.png)
+   ![Subnet2](/Screenshots/Subnet%20pic%202.png)
 
    3. Setting Up NAT Gateway and Internet Gateway
    - Create a gateways.tf file to configure:
@@ -45,26 +45,26 @@ For this we have used terraform version: terraform-provider-aws_5.62.0_SHA256SUM
      - A NaT Gateway that depends on the previously created Elastic IP and allocates ID from the Elastic IP, and is associated with subnet from the subnets defined earlier. Include a Tag for labelling the resource.
    - Create an internet gateway, referencing to the earlier created VPC as it attached to the VPC for the resources to communicate to the internet, and a Tag for labelling the resource.
 
- ![Gatewayspic](/Gateways%20pic.png)
+ ![Gatewayspic](/Screenshots/Gateways%20pic.png)
 
 4. **Setting up NACLs**
 
 - Create a nacl.tf file to configure: 
  - A public NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
   - A public subnet to associate with the NACL and and a Tag for labelling the resource.
-   ![Gatewayspic](/NACL%201.png)
+   ![Nacl1](/Screenshots/NACL%201.png)
 
  - A Web Private NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules similar to the Public NACL: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
   - A Private subnet to associate with the NACL and and a Tag for labelling the resource.
-  ![Gatewayspic](/NACL%202.png)
+  ![Nacl2](/Screenshots/NACL%202.png)
 
    - A Web Private NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules similar to the Public NACL: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
   - A Private subnet to associate with the NACL and and a Tag for labelling the resource.
-  ![Gatewayspic](/NACL%203.png)
+  ![Nacl3](/Screenshots/NACL%203.png)
 
    - A Bastion Public NACL, attach this NACL to the earlier created VPC by referencing the VPC ID. Set the Ingress and Egress Rules similar to the other NACLs: by setting it to allow any incoming traffic and outgoing traffic from any IP address.
   - A Private subnet to associate with the NACL and and a Tag for labelling the resource.
-  ![Gatewayspic](/NACL%204.png)
+  ![Nacl4](/Screenshots/NACL%204.png)
 
 
 5. **Setting Up Route Tables and Associations**
@@ -72,22 +72,23 @@ Create a route_tables.tf file to configure the following:
  - A Public Subnet Route Table, attach this route table to the  earlier created VPC by referencing the VPC ID.  Allow traffic to the internet by setting the cidr_block to 0.0.0.0/0 and linking it to the internet gateway created earlier. Add a Tag for labelling the resource.
   - Create Route Table Association, and Link this route table to the public subnet.
 
-    ![Gatewayspic](/RT%201.png)
+    ![RouteTable](/Screenshots/RT%201.png)
 
  - A Web Private Subnet Route Table, attach this route table to the earlier created VPC by referencing the VPC ID.  A Route outbound traffic through the NAT gateway by setting the cidr_block to 0.0.0.0/0 and linking it to the NAT gateway created earlier. Add a Tag for labelling the resource.
   - Create Route Table Association, and Link this route table to the private subnets for the web servers.
-   ![Gatewayspic](/RT%202.png)
+   ![RouteTable2](/Screenshots/RT%202.png)
 
 
  - An App Private Subnet Route Table, attach this route table to the  earlier created VPC by referencing the VPC ID.  Route outbound traffic through the NAT gateway by setting the cidr_block to 0.0.0.0/0 and linking it to the NAT gateway created earlier. Add a Tag for labelling the resource.
   - Create Route Table Association, and Link this route table to the private subnets for the application servers.
-   ![Gatewayspic](/RT%203.png)
+   ![RouteTable3](/Screenshots/RT%203.png)
 
  - d.  A Bastion Public Subnet Route Table:, attach this route table to the  earlier created VPC by referencing the VPC ID.  Allow traffic to the internet by setting the cidr_block to 0.0.0.0/0 and linking it to the internet gateway created earlier. Add a Tag for labelling the resource.
   - Create Route Table Association, and Link this route table to the bastion public subnet.
-   ![Gatewayspic](/Screenshots/RT%204.png)
+   ![RouteTable4](/Screenshots/RT%204.png)
 
-6. ** EC2 Instances
+6. **EC2 Instances**
+
 
 
 
