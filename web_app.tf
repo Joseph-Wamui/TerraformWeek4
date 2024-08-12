@@ -1,7 +1,7 @@
 resource "aws_instance" "web-server" {
-  ami                    = "ami-0aff18ec83b712f05"
+  ami                    = "ami-07c8c1b18ca66bb07"
   instance_type          = "t3.micro"
-  key_name               = "skillsynckeypair"
+  key_name               = "JosephKey"
   subnet_id              = aws_subnet.web-private-a.id
   vpc_security_group_ids = [aws_security_group.web-app-security-group.id]
   iam_instance_profile   = aws_iam_instance_profile.server_profile.name
@@ -9,6 +9,7 @@ resource "aws_instance" "web-server" {
   tags = {
     Name = "web-server"
   }
+  
 
   root_block_device {
     delete_on_termination = false
@@ -20,9 +21,9 @@ resource "aws_instance" "web-server" {
 }
 
 resource "aws_instance" "app-server" {
-  ami                    = "ami-0aff18ec83b712f05"
+  ami                    = "ami-07c8c1b18ca66bb07"
   instance_type          = "t3.micro"
-  key_name               = "skillsynckeypair"
+  key_name               = "JosephKey"
   subnet_id              = aws_subnet.app-private-a.id
   vpc_security_group_ids = [aws_security_group.web-app-security-group.id]
   iam_instance_profile   = aws_iam_instance_profile.server_profile.name

@@ -15,6 +15,7 @@ resource "aws_nat_gateway" "nat_a" {
   }
 }
 
+
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.vpc.id
   tags = {

@@ -53,6 +53,7 @@ resource "aws_subnet" "app-private-b" {
 
 
 
+
 resource "aws_subnet" "bastion-public-a" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = "${var.vpc_cidr}.7.0/24"
