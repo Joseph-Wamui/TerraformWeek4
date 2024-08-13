@@ -16,7 +16,7 @@ The following softwares are required to accomplish this project:
 2. Terraform 
 3. AWS CLI Configure
 4. GIT: Version control system 
-- An AWS account is require with the appropriate permissions and access tokens to access the account in AWS CLI.
+- An AWS account is require with the appropriate permissions and access tokens to access the account.
 
 ## INSTRUCTIONS
 
