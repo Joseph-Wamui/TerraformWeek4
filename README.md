@@ -16,7 +16,7 @@ The following softwares are required to accomplish this project:
 2. Terraform 
 3. AWS CLI Configure
 4. GIT: Version control system 
-An AWS account is require with the appropriate permissions and access tokens to access the account in AWS CLI.
+- An AWS account is require with the appropriate permissions and access tokens to access the account in AWS CLI.
 
 ## INSTRUCTIONS
 
@@ -219,7 +219,7 @@ Create a route_tables.tf file to configure the following:
   ![LT2](/Screenshots/Launch%20template%202.png)
 
   ## DEPLOYING SERVICES 
-  1. **Terraform init**
+ 1.  **Terraform init**
  Run terraform init to set up the working directory and download necessary plugins.
  ![TR](/Screenshots/Terraform%201.png)
 
@@ -279,6 +279,9 @@ Execute terraform apply to create the infrastructure as per the configuration.
 ## Terraform destroy
  Run terraform destroy to remove all resources managed by Terraform.
   ![TR](/Screenshots/Terraform%204.png)
+
+## Conclusion
+- In this project, we successfully utilized Terraform to provision and manage a variety of AWS services, including VPCs, EC2 instances, Load Balancers, and Auto Scaling Groups.
 
 
 
